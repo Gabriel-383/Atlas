@@ -26,6 +26,8 @@ Para executar este projeto, você precisa ter o Java instalado em sua máquina. 
 1. Clone o repositório:
    ```bash
    $ git clone https://github.com/Gabriel-383/Atlas.git
-   $ javac Main.java
-   $ java Main
+   $ mvn verify
+   $ mvn compile
+   $ mvn install
+   $ mvn run
    

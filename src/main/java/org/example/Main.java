@@ -7,6 +7,7 @@ package org.example;
 
 import java.util.Scanner;
 import org.example.Calculadora;
+import org.example.Agenda;
 
 public class Main {
 
@@ -17,6 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         mainMenu();
+
     }
     /**Metodo Que interage de forma primaria e contral com o usuario
 **/
@@ -24,14 +26,18 @@ public class Main {
         Scanner input =  new Scanner(System.in);
 
         System.out.println("[0]ENCERRAR;");
-        System.out.println("[1]CALCULADORA.");
+        System.out.println("[1]CALCULADORA;");
+        System.out.println("[2]AGENDA.");
         int opc =  input.nextInt();
         switch (opc){
             case 0:
                 System.exit(0);
             case 1:
                 menuCalc();
+            case 2:
+                menuAgenda();
         }
+        input.close();
     }
 /**Método para que o usuario selecione a opção(Menu Secundario)
  * @param int opc - opção do usuario
@@ -139,6 +145,48 @@ public class Main {
                 mainMenu();
         }
 
+    }
+
+    static void menuAgenda(){
+        Scanner input =  new Scanner(System.in);
+        Agenda agenda = new Agenda();
+        int opc;
+
+        do{
+            System.out.println("[0]Adicionar Contato;");
+            System.out.println("[1]Listar Contato;");
+            System.out.println("[2]Remover Contato;");
+            System.out.println("[3]Sair;");
+            System.out.println("Escolha uma Opção: ");
+            opc = input.nextInt();
+            input.nextLine();
+
+            switch (opc){
+                case 0:
+                    System.out.print("Nome: ");
+                    String nome = input.nextLine();
+                    System.out.print("Telefone: ");
+                    String tele = input.nextLine();
+                    agenda.adicionarContato(new Contato(nome, tele));
+                    break;
+                case 1:
+                    agenda.listarContatos();
+                    break;
+                case 2:
+                    System.out.print("Nome do Contato a Remover: ");
+                    String nomeRemover = input.nextLine();
+                    agenda.removerContato(nomeRemover);
+                    break;
+                case 3:
+                    agenda.salvarContatos();
+                    System.out.println("Saindo...");
+                    System.exit(0);
+                default:
+                    System.out.println("Opção Inválida. Tente Novamente!");
+            }
+        }while (opc != 3);
+
+        input.close();
     }
 
 
